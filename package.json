@@ -1,0 +1,24 @@
+{
+    "name": "bug-hunter",
+    "version": "1.0.0",
+    "description": "Automation framework",
+    "main": "index.js",
+    "scripts": {
+        "cucumber:dev": "cucumber-js src/features/**/*.feature --tags @dev --require src/step-definitions/**/**/*.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fperez08/bug-hunter.git"
+    },
+    "author": "Francisco Perez",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/fperez08/bug-hunter/issues"
+    },
+    "homepage": "https://github.com/fperez08/bug-hunter#readme",
+    "devDependencies": {
+        "@cucumber/cucumber": "^8.9.0",
+        "playwright": "^1.28.1",
+        "chai": "^4.3.7"
+    }
+}

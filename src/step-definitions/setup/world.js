@@ -9,7 +9,7 @@ const BROWSERS = Object.freeze({
     WEBKIT: webkit,
 });
 
-export class ScenarioWorld extends World {
+exports.ScenarioWorld = class ScenarioWorld extends World {
     constructor(options) {
         super(options);
         screen: {
@@ -17,21 +17,22 @@ export class ScenarioWorld extends World {
     }
 
     async init() {
-        const browser = await chromium.launch();
+        const browserName = this.__getBrowserName();
+        const browser = await this.__browserBuilder(browserName);
         const context = await browser.newContext();
         const page = await context.newPage();
-        this.screen = { page };
+        this.screen = { page, browser };
         return this.screen;
     }
 
-    async __getBrowserName() {
+    __getBrowserName() {
         return getValueEnv("UI_AUTOMATION_BROWSER");
     }
 
     async __browserBuilder(browserName, options = {}) {
         object_has[browserName];
-        return await BROWSERS[browserName.upper()].launch(options);
+        return await BROWSERS[browserName.toUpperCase()].launch(options);
     }
-}
+};
 
-setWorldConstructor(ScenarioWorld);
+setWorldConstructor(exports.ScenarioWorld);

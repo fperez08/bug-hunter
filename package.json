@@ -4,7 +4,8 @@
     "description": "Automation framework",
     "main": "index.js",
     "scripts": {
-        "cucumber:dev": "cucumber-js src/features/**/*.feature --tags @dev --require src/step-definitions/**/**/*.js",
+        "cucumber": "cucumber-js",
+        "cucumber:dry": "cucumber-js --dry-run",
         "postinstall": "npx basetag link"
     },
     "repository": {

@@ -3,22 +3,19 @@ const { chromium } = require("playwright");
 //const fs = require("fs");
 
 Before(async function () {
-    const browser = await chromium.launch(); // Or 'firefox' or 'webkit'.
-    const page = await browser.newPage();
-
-    global.browser = browser;
-    global.page = page;
+    return await this.init();
 });
 
 After(async function (scenario) {
     const scenarioStatus = scenario.result?.status;
+    const { page, browser } = this.screen;
 
     if (scenarioStatus === "FAILED") {
-        const image = await global.page.screenshot({
+        const image = await page.screenshot({
             path: `./reports/screenshots/${scenario.pickle.name}.png`,
             type: "png",
         });
     }
 
-    await global.browser.close();
+    await browser.close();
 });

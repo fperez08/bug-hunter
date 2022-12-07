@@ -1,23 +1,33 @@
 const { Then } = require("@cucumber/cucumber");
 const { expect } = require("chai");
+const { getLocator } = require("$/src/support/web_element.js");
 Then(
     /^the "([^"]*)" should contain the text "(.*)"$/,
     async function (elementKey, expectedElementText) {
-        const { page } = this.screen;
+        const {
+            screen: { page },
+            globalConfigs,
+            globalVariables,
+        } = this;
         console.log(
             `the ${elementKey} should contain the text ${expectedElementText}`
         );
 
-        const element = await page.locator("[data-id='contacts']");
-        const elementText = await element.innerText();
+        const selector = getLocator(elementKey, globalVariables, globalConfigs);
+        const elementText = await page.locator(selector).innerText();
 
         expect(elementText).to.contain(expectedElementText);
     }
 );
 
 Then(/the "([^"]*)" should be displayed$/, async function (elementKey) {
-    const { page } = this.screen;
+    const {
+        screen: { page },
+        globalConfigs,
+        globalVariables,
+    } = this;
 
-    const element = await page.locator("a.testing-talks-logo");
-    expect(await element.isVisible()).to.be.true;
+    const selector = getLocator(elementKey, globalVariables, globalConfigs);
+    const locator = await page.locator(selector);
+    expect(await locator.isVisible()).to.be.true;
 });

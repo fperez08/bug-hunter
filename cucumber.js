@@ -1,3 +1,8 @@
+const dotenv = require("dotenv");
+const { env } = require("$/src/environment/env_parser.js");
+
+dotenv.config({ path: env("COMMON_CONFIG_FILE") });
+
 const common = {
     paths: ["./src/features/**/*.feature"],
     require: ["./src/step-definitions/**/**/*.js"],

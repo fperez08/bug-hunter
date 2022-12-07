@@ -14,6 +14,7 @@ exports.ScenarioWorld = class ScenarioWorld extends World {
         super(options);
         screen: {
         }
+        this.globalConfigs = options.parameters;
     }
 
     async init() {

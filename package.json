@@ -23,8 +23,8 @@
     "homepage": "https://github.com/fperez08/bug-hunter#readme",
     "devDependencies": {
         "@cucumber/cucumber": "^8.9.0",
+        "@playwright/test": "^1.28.1",
         "basetag": "^2.1.0",
-        "chai": "^4.3.7",
         "cucumber-html-reporter": "^5.5.0",
         "dotenv": "^16.0.3",
         "lodash": "^4.17.21",

@@ -4,7 +4,7 @@ const {
     currentPathMatchPageId,
 } = require("$/src/support/browser.js");
 
-const { expect } = require("chai");
+const { expect } = require("@playwright/test");
 
 Given(/^I am on the "([^"]*)" page$/, async function (pageId) {
     const {
@@ -15,5 +15,5 @@ Given(/^I am on the "([^"]*)" page$/, async function (pageId) {
     await navigateTo(page, pageId, globalConfigs);
     expect(
         await currentPathMatchPageId(page, pageId, globalConfigs)
-    ).to.be.true;
+    ).toBeTruthy();
 });

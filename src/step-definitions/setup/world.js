@@ -1,5 +1,9 @@
 const { object_has } = require("$/src/support/object_utils.js");
-const { setWorldConstructor, World } = require("@cucumber/cucumber");
+const {
+    setWorldConstructor,
+    World,
+    setDefaultTimeout,
+} = require("@cucumber/cucumber");
 const { chromium, firefox, webkit } = require("playwright");
 const { env } = require("$/src/environment/env_parser.js");
 
@@ -38,3 +42,4 @@ exports.ScenarioWorld = class ScenarioWorld extends World {
 };
 
 setWorldConstructor(exports.ScenarioWorld);
+setDefaultTimeout(6 * 5000);

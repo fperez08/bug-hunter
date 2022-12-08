@@ -1,6 +1,6 @@
 const _ = require("lodash");
 
-exports.object_has = function (obj, path) {
+const object_has = function (obj, path) {
     if (!_.has(obj, path))
         throw Error(
             `${path} is not a key or a valid path of the object: ${JSON.stringify(
@@ -9,3 +9,5 @@ exports.object_has = function (obj, path) {
         );
     return true;
 };
+
+exports.object_has = object_has;

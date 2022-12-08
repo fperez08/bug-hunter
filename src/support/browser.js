@@ -21,5 +21,22 @@ const pathMatchesPageId = (path, pageId, globalConfigs) => {
     return pageRegex.test(path);
 };
 
+const getCurrentPageId = async (page, globalConfigs) => {
+    const { pagesConfig } = globalConfigs;
+    const currentUrl = await page.url();
+    const { pathname } = new URL(currentUrl);
+    const pageIds = Object.keys(pagesConfig);
+    const currentPageId = pageIds.find((pageId) =>
+        pathMatchesPageId(pathname, pageId, globalConfigs)
+    );
+
+    if (!currentPageId)
+        throw Error(`Failed to get page name from current route ${pathname}, \
+                    possible pages: ${JSON.stringify(pagesConfig)}`);
+
+    return currentPageId;
+};
+
 exports.navigateTo = navigateTo;
 exports.currentPathMatchPageId = currentPathMatchPageId;
+exports.getCurrentPageId = getCurrentPageId;

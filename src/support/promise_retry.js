@@ -1,27 +1,20 @@
-const wait = (ms) =>
-    // @ts-ignore
-    new Promise((resolve) => setTimeout(() => resolve(), ms));
+// @ts-nocheck
+const wait = (ms) => new Promise((resolve) => setTimeout(() => resolve(), ms));
 
 exports.retryWithDelay = async function retryWithDelay(
-    predicate,
-    retries = 10,
-    interval = 100,
-    finalErr = "Retry failed"
+    assertionFunc,
+    retry,
+    time
 ) {
     try {
-        // try
-        await predicate();
+        await assertionFunc();
     } catch (err) {
-        // if no retries left
-        // throw error
-        if (retries <= 0) {
-            return Promise.reject(finalErr);
+        if (retry <= 0) {
+            throw err;
         }
 
-        //delay the next call
-        await wait(interval);
+        await wait(time);
 
-        //recursively call the same func
-        return retryWithDelay(predicate, retries - 1, interval, finalErr);
+        return retryWithDelay(assertionFunc, retry - 1, time);
     }
 };

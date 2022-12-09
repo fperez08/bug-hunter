@@ -8,9 +8,6 @@ Then(
             screen: { page },
             globalConfigs,
         } = this;
-        console.log(
-            `the ${elementKey} should contain the text ${expectedElementText}`
-        );
 
         const selector = await getSelector(page, elementKey, globalConfigs);
         await expect(page.locator(selector)).toHaveText(expectedElementText);

@@ -1,4 +1,6 @@
 {
     "contacts header": "[data-id='contacts']",
-    "create": "[data-id='add-button']"
+    "create": "[data-id='add-button']",
+    "gender": "[data-id='gender']",
+    "name": "[data-id='name']"
 }

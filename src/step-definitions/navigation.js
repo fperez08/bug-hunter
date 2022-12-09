@@ -11,7 +11,6 @@ Given(/^I am on the "([^"]*)" page$/, async function (pageId) {
         screen: { page },
         globalConfigs,
     } = this;
-    console.log(`I am on the ${pageId} page`);
     await navigateTo(page, pageId, globalConfigs);
     expect(
         await currentPathMatchPageId(page, pageId, globalConfigs)

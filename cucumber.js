@@ -9,6 +9,7 @@ const pagesConfig = getJsonFromFile(env("PAGE_URLS_PATHS"));
 const mappingFiles = fs.readdirSync(
     `${process.cwd()}${env("PAGE_ELEMENTS_PATH")}`
 );
+const testData = getJsonFromFile(env("TEST_DATA_PATH"));
 
 const pageElementsMappings = mappingFiles.reduce(
     (pageElementConfigAcc, file) => {
@@ -29,6 +30,7 @@ const common = {
         hostsConfig: { ...hostsConfig },
         pagesConfig: { ...pagesConfig },
         pageElementsMappings: { ...pageElementsMappings },
+        testData: { ...testData },
     },
 };
 

@@ -12,4 +12,19 @@ const getSelector = async (page, elementKey, globalConfigs) => {
     return selector;
 };
 
+const clickElement = async (page, selector) => {
+    await page.click(selector);
+};
+
+const typeText = async (page, selector, text) => {
+    await page.fill(selector, text);
+};
+
+const selectDropdownByValue = async (page, selector, value) => {
+    await page.selectOption(selector, value);
+};
+
 exports.getSelector = getSelector;
+exports.clickElement = clickElement;
+exports.typeText = typeText;
+exports.selectDropdownByValue = selectDropdownByValue;

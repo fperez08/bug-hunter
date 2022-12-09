@@ -1,5 +1,4 @@
 const { Before, After } = require("@cucumber/cucumber");
-const { chromium } = require("playwright");
 const { env } = require("$/src/environment/env_parser.js");
 
 Before(async function () {

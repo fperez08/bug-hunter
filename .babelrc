@@ -8,10 +8,11 @@
             "module-resolver",
             {
                 "root": [
-                    "./src"
+                    "./"
                 ],
                 "alias": {
-                    "environment": "./environment",
+                    "@environment": "./src/environment",
+                    "@support": "./src/support"
                 }
             }
         ]

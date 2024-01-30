@@ -1,5 +1,5 @@
-const { expect } = require("chai");
-const { retryWithDelay } = require("$/src/support/promise_retry.js");
+import { expect } from "chai";
+import { retryWithDelay } from "@support/promise_retry";
 
 exports.expectAsync = function (actual) {
     const defaultOptions = { retry: 50, waitTime: 100 };

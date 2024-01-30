@@ -1,5 +1,5 @@
-const { Before, After } = require("@cucumber/cucumber");
-const { env } = require("$/src/environment/env_parser.js");
+import { Before, After } from "@cucumber/cucumber";
+import { env } from "@environment/env_parser";
 
 Before(async function () {
     return await this.init();

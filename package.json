@@ -31,7 +31,7 @@
         "@playwright/test": "^1.28.1",
         "@types/node": "^20.11.5",
         "babel-plugin-module-resolver": "^5.0.0",
-        "basetag": "^2.1.0",
+        "chai": "^5.0.0",
         "cucumber-html-reporter": "^5.5.0",
         "dotenv": "^16.0.3",
         "lodash": "^4.17.21",

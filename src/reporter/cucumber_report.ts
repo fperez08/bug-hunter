@@ -1,5 +1,5 @@
 import reporter from "cucumber-html-reporter";
-import { env } from "environment";
+import { env } from "@environment/env_parser";
 import dotenv from "dotenv";
 
 dotenv.config({ path: env("COMMON_CONFIG_FILE") });

@@ -3,7 +3,7 @@ const { expect } = require("@playwright/test");
 const { getSelector } = require("$/src/support/web_element.js");
 Then(
     /^the "([^"]*)" should contain the text "(.*)"$/,
-    async function (elementKey, expectedElementText) {
+    async function (elementKey: string, expectedElementText: string) {
         const {
             screen: { page },
             globalConfigs,

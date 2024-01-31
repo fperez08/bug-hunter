@@ -15,11 +15,11 @@ export interface ElementMapping {
 }
 
 export interface GlobalConfig {
-    hostConfig: Hosts;
+    hostsConfig: Hosts;
     pagesConfig: Pages;
     pagesElementsMapping: ElementMapping;
 }
 export interface Screen {
-    page?: Page;
-    browser?: Browser;
+    page: Page;
+    browser: Browser;
 }

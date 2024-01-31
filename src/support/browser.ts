@@ -1,4 +1,10 @@
-async function navigateTo(page, pageId, globalConfigs) {
+import { Page } from "playwright";
+import { GlobalConfig } from "models/global_configurations";
+async function navigateTo(
+    page: Page,
+    pageId: string,
+    globalConfigs: GlobalConfig
+) {
     const hostName = process.env["UI_AUTOMATION_HOST"] || "localhost";
     const { pagesConfig, hostsConfig } = globalConfigs;
 
@@ -9,19 +15,30 @@ async function navigateTo(page, pageId, globalConfigs) {
     await page.goto(url.href);
 }
 
-async function currentPathMatchPageId(page, pageId, globalConfigs) {
+async function currentPathMatchPageId(
+    page: Page,
+    pageId: string,
+    globalConfigs: GlobalConfig
+): Promise<boolean> {
     const currentUrl = await page.url();
     const { pathname } = new URL(currentUrl);
     return pathMatchesPageId(pathname, pageId, globalConfigs);
 }
 
-async function pathMatchesPageId(path, pageId, globalConfigs) {
+async function pathMatchesPageId(
+    path: string,
+    pageId: string,
+    globalConfigs: GlobalConfig
+): Promise<boolean> {
     const { pagesConfig } = globalConfigs;
     const pageRegex = new RegExp(pagesConfig[pageId].regex);
     return pageRegex.test(path);
 }
 
-async function getCurrentPageId(page, globalConfigs) {
+async function getCurrentPageId(
+    page: Page,
+    globalConfigs: GlobalConfig
+): Promise<string> {
     const { pagesConfig } = globalConfigs;
     const currentUrl = await page.url();
     const { pathname } = new URL(currentUrl);

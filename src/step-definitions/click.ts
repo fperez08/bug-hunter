@@ -1,9 +1,10 @@
 import { When } from "@cucumber/cucumber";
 import { getSelector, clickElement } from "@support/web_element";
+import { ScenarioWorld } from "./setup/world";
 
 When(
     /^I click the "([^"]*)" (?:button|link)$/,
-    async function (elementKey: string) {
+    async function (this: ScenarioWorld, elementKey: string) {
         const {
             screen: { page },
             globalConfigs,

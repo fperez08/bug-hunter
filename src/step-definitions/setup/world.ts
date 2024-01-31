@@ -3,6 +3,7 @@ import {
     setWorldConstructor,
     World,
     setDefaultTimeout,
+    IWorldOptions,
 } from "@cucumber/cucumber";
 import { GlobalConfig, Screen } from "models/global_configurations";
 import { Browser, chromium, firefox, webkit } from "playwright";
@@ -16,11 +17,10 @@ const BROWSERS = Object.freeze({
 
 export class ScenarioWorld extends World {
     globalConfigs: GlobalConfig;
-    screen: Screen;
-    constructor(options) {
+    screen!: Screen;
+    constructor(options: IWorldOptions) {
         super(options);
         this.globalConfigs = options.parameters as GlobalConfig;
-        this.screen = {};
     }
 
     async init() {

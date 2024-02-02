@@ -24,7 +24,7 @@ const pageElementsMappings: ElementMapping = mappingFiles.reduce(
 
 const common = {
     paths: ["./src/features/**/*.feature"],
-    require: ["./src/step-definitions/**/**/*.js"],
+    require: ["./dist/step-definitions/**/**/*.js"],
     format: ["progress-bar", "json:./reports/report.json"],
     worldParameters: {
         hostsConfig: { ...hostsConfig },

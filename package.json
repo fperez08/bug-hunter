@@ -5,13 +5,10 @@
     "main": "index.js",
     "scripts": {
         "precucumber": "rimraf reports && mkdir reports && echo {} > reports/report.json",
-        "cucumber": "COMMON_CONFIG_FILE=./env/common.env yarn cucumber:run",
-        "postcucumber": "COMMON_CONFIG_FILE=./env/common.env node ./src/reporter/cucumber_report.js",
-        "cucumber:run": "cucumber-js",
-        "cucumber:dry": "cucumber-js --dry-run",
-        "postinstall": "npx basetag link",
+        "cucumber": "COMMON_CONFIG_FILE=./env/common.env npm run transpile && cucumber-js",
+        "postcucumber": "COMMON_CONFIG_FILE=./env/common.env node ./dist/reporter/cucumber_report.js",
         "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
-        "cucumbert": "npm transpile && cucumber-js"
+        "cucumber:dry": "COMMON_CONFIG_FILE=./env/common.env cucumber-js --dry-run"
     },
     "repository": {
         "type": "git",

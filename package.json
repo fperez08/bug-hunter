@@ -5,10 +5,10 @@
     "main": "index.js",
     "scripts": {
         "precucumber": "rimraf reports && mkdir reports && echo {} > reports/report.json",
-        "cucumber": "COMMON_CONFIG_FILE=./env/common.env npm run transpile && cucumber-js",
+        "cucumber": "npm run transpile && cucumber-js",
         "postcucumber": "COMMON_CONFIG_FILE=./env/common.env node ./dist/reporter/cucumber_report.js",
         "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
-        "cucumber:dry": "COMMON_CONFIG_FILE=./env/common.env cucumber-js --dry-run"
+        "cucumber:dry": "npm run transpile && cucumber-js --dry-run"
     },
     "repository": {
         "type": "git",

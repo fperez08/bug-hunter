@@ -7,11 +7,11 @@ async function getSelector(
     elementKey: string,
     globalConfigs: GlobalConfig
 ) {
-    const { pagesElementsMapping } = globalConfigs;
+    const { pageElementsMappings } = globalConfigs;
     const pageId = await getCurrentPageId(page, globalConfigs);
     const selector =
-        pagesElementsMapping[pageId]?.[elementKey] ||
-        pagesElementsMapping.common?.[elementKey];
+        pageElementsMappings[pageId]?.[elementKey] ||
+        pageElementsMappings.common?.[elementKey];
 
     if (!selector) throw Error(`Unable to find the ${elementKey} mapping`);
 
@@ -19,11 +19,11 @@ async function getSelector(
 }
 
 async function clickElement(page: Page, selector: string) {
-    await page.click(selector);
+    await page.locator(selector).click();
 }
 
 async function typeText(page: Page, selector: string, text: string) {
-    await page.fill(selector, text);
+    await page.locator(selector).fill(text);
 }
 
 async function selectDropdownByValue(

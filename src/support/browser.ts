@@ -25,11 +25,11 @@ async function currentPathMatchPageId(
     return pathMatchesPageId(pathname, pageId, globalConfigs);
 }
 
-async function pathMatchesPageId(
+function pathMatchesPageId(
     path: string,
     pageId: string,
     globalConfigs: GlobalConfig
-): Promise<boolean> {
+): boolean {
     const { pagesConfig } = globalConfigs;
     const pageRegex = new RegExp(pagesConfig[pageId].regex);
     return pageRegex.test(path);

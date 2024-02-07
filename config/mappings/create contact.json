@@ -1,9 +1,0 @@
-{
-    "create contact header": "h1.create-contact",
-    "name": "input[data-id='name']",
-    "gender": "select[data-id='gender']",
-    "phone": "input[data-id='phone']",
-    "street": "input[data-id='street']",
-    "city": "input[data-id='city']",
-    "save": "[data-id='save-button']"
-}

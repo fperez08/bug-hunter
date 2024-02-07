@@ -17,7 +17,7 @@ export interface ElementMapping {
 export interface GlobalConfig {
     hostsConfig: Hosts;
     pagesConfig: Pages;
-    pagesElementsMapping: ElementMapping;
+    pageElementsMappings: ElementMapping;
 }
 export interface Screen {
     page: Page;

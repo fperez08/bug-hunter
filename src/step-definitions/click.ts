@@ -4,7 +4,7 @@ import { ScenarioWorld } from "./setup/world";
 
 When(
     /^I click the "([^"]*)" (?:button|link)$/,
-    async function (this: ScenarioWorld, elementKey: string) {
+    async function (elementKey: string) {
         const {
             screen: { page },
             globalConfigs,

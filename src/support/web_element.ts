@@ -1,6 +1,7 @@
 import { getCurrentPageId } from "@support/browser";
 import { GlobalConfig } from "models/global_configurations";
 import { Page } from "playwright";
+import { checkElementIsVisible } from "@support/web_elements_checker";
 
 async function getSelector(
     page: Page,
@@ -19,11 +20,15 @@ async function getSelector(
 }
 
 async function clickElement(page: Page, selector: string) {
-    await page.locator(selector).click();
+    const locator = page.locator(selector);
+    await checkElementIsVisible(locator);
+    await locator.click();
 }
 
 async function typeText(page: Page, selector: string, text: string) {
-    await page.locator(selector).fill(text);
+    const locator = page.locator(selector);
+    await checkElementIsVisible(locator);
+    await locator.fill(text);
 }
 
 async function selectDropdownByValue(
@@ -31,6 +36,8 @@ async function selectDropdownByValue(
     selector: string,
     value: string
 ) {
-    await page.selectOption(selector, value);
+    const locator = page.locator(selector);
+    await checkElementIsVisible(locator);
+    await locator.selectOption(value);
 }
 export { getSelector, clickElement, typeText, selectDropdownByValue };

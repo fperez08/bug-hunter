@@ -2,10 +2,13 @@
     "name": "bug-hunter",
     "version": "1.0.0",
     "description": "Automation framework",
-    "main": "index.js",
+    "main": "cucumber.js",
     "scripts": {
         "precucumber": "rimraf reports && mkdir reports && echo {} > reports/report.json",
         "cucumber": "npm run transpile && cucumber-js",
+        "cucumber:dev": "npm run transpile && cucumber-js -p dev",
+        "cucumber:smoke": "npm run transpile && cucumber-js -p smoke",
+        "cucumber:regression": "npm run transpile && cucumber-js -p regression",
         "postcucumber": "COMMON_CONFIG_FILE=./env/common.env node ./dist/reporter/cucumber_report.js",
         "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
         "cucumber:dry": "npm run transpile && cucumber-js --dry-run"

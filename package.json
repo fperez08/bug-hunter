@@ -2,14 +2,16 @@
     "name": "bug-hunter",
     "version": "1.0.0",
     "description": "Automation framework",
-    "main": "index.js",
+    "main": "cucumber.js",
     "scripts": {
         "precucumber": "rimraf reports && mkdir reports && echo {} > reports/report.json",
-        "cucumber": "COMMON_CONFIG_FILE=./env/common.env yarn cucumber:run",
-        "postcucumber": "COMMON_CONFIG_FILE=./env/common.env node ./src/reporter/cucumber_report.js",
-        "cucumber:run": "cucumber-js",
-        "cucumber:dry": "cucumber-js --dry-run",
-        "postinstall": "npx basetag link"
+        "cucumber": "npm run transpile && cucumber-js",
+        "cucumber:dev": "npm run transpile && cucumber-js -p dev",
+        "cucumber:smoke": "npm run transpile && cucumber-js -p smoke",
+        "cucumber:regression": "npm run transpile && cucumber-js -p regression",
+        "postcucumber": "COMMON_CONFIG_FILE=./env/common.env node ./dist/reporter/cucumber_report.js",
+        "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
+        "cucumber:dry": "npm run transpile && cucumber-js --dry-run"
     },
     "repository": {
         "type": "git",
@@ -22,12 +24,18 @@
     },
     "homepage": "https://github.com/fperez08/bug-hunter#readme",
     "devDependencies": {
-        "@cucumber/cucumber": "^8.9.0",
+        "@babel/cli": "^7.23.4",
+        "@babel/preset-env": "^7.23.6",
+        "@babel/preset-typescript": "^7.23.3",
+        "@cucumber/cucumber": "^10.1.0",
         "@playwright/test": "^1.28.1",
-        "basetag": "^2.1.0",
+        "@types/node": "^20.11.5",
+        "babel-plugin-module-resolver": "^5.0.0",
+        "chai": "^5.0.0",
         "cucumber-html-reporter": "^5.5.0",
         "dotenv": "^16.0.3",
         "lodash": "^4.17.21",
-        "playwright": "^1.28.1"
+        "playwright": "^1.28.1",
+        "typescript": "^5.3.3"
     }
 }

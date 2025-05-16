@@ -1,11 +1,13 @@
-const { object_has } = require("$/src/support/object_utils.js");
-const {
+import { object_has } from "@support/object_utils";
+import {
     setWorldConstructor,
     World,
     setDefaultTimeout,
-} = require("@cucumber/cucumber");
-const { chromium, firefox, webkit } = require("playwright");
-const { env } = require("$/src/environment/env_parser.js");
+    IWorldOptions,
+} from "@cucumber/cucumber";
+import { GlobalConfig, Screen } from "models/global_configurations";
+import { Browser, chromium, firefox, webkit } from "playwright";
+import { env } from "@environment/env_parser";
 
 const BROWSERS = Object.freeze({
     CHROMIUM: chromium,
@@ -13,12 +15,12 @@ const BROWSERS = Object.freeze({
     WEBKIT: webkit,
 });
 
-exports.ScenarioWorld = class ScenarioWorld extends World {
-    constructor(options) {
+export class ScenarioWorld extends World {
+    globalConfigs: GlobalConfig;
+    screen!: Screen;
+    constructor(options: IWorldOptions) {
         super(options);
-        screen: {
-        }
-        this.globalConfigs = options.parameters;
+        this.globalConfigs = options.parameters as GlobalConfig;
     }
 
     async init() {
@@ -30,15 +32,15 @@ exports.ScenarioWorld = class ScenarioWorld extends World {
         return this.screen;
     }
 
-    __getBrowserName() {
+    __getBrowserName(): string {
         return env("UI_AUTOMATION_BROWSER");
     }
 
-    async __browserBuilder(browserName, options = {}) {
+    async __browserBuilder(browserName, options = {}): Promise<Browser> {
         object_has[browserName];
         return await BROWSERS[browserName.toUpperCase()].launch(options);
     }
-};
+}
 
 setWorldConstructor(exports.ScenarioWorld);
 setDefaultTimeout(6 * 5000);

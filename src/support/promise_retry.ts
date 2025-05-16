@@ -1,10 +1,10 @@
-// @ts-nocheck
-const wait = (ms) => new Promise((resolve) => setTimeout(() => resolve(), ms));
+const wait = (ms: number) =>
+    new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
 
-exports.retryWithDelay = async function retryWithDelay(
-    assertionFunc,
-    retry,
-    time
+export async function retryWithDelay(
+    assertionFunc: Function,
+    retry: number,
+    time: number
 ) {
     try {
         await assertionFunc();
@@ -17,4 +17,4 @@ exports.retryWithDelay = async function retryWithDelay(
 
         return retryWithDelay(assertionFunc, retry - 1, time);
     }
-};
+}

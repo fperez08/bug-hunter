@@ -1,8 +1,9 @@
-const { Then } = require("@cucumber/cucumber");
-const { expect } = require("@playwright/test");
-const { getSelector } = require("$/src/support/web_element.js");
+import { Then } from "@cucumber/cucumber";
+import { expect } from "@playwright/test";
+import { getSelector } from "@support/web_element.js";
+import { ScenarioWorld } from "step-definitions/setup/world";
 
-Then(/the "([^"]*)" should be displayed$/, async function (elementKey) {
+Then(/the "([^"]*)" should be displayed$/, async function (elementKey: string) {
     const {
         screen: { page },
         globalConfigs,
@@ -14,10 +15,9 @@ Then(/the "([^"]*)" should be displayed$/, async function (elementKey) {
 
 Then(
     /the element with text "(.*)" should be displayed$/,
-    async function (text) {
+    async function (text: string) {
         const {
             screen: { page },
-            globalConfigs,
         } = this;
 
         await expect(page.getByText(text)).toBeVisible();

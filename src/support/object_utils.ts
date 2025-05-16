@@ -1,6 +1,6 @@
-const _ = require("lodash");
+import _ from "lodash";
 
-const object_has = function (obj, path) {
+export function object_has(obj: object, path: Array<string> | string) {
     if (!_.has(obj, path))
         throw Error(
             `${path} is not a key or a valid path of the object: ${JSON.stringify(
@@ -8,6 +8,4 @@ const object_has = function (obj, path) {
             )}`
         );
     return true;
-};
-
-exports.object_has = object_has;
+}
